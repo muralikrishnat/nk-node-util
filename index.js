@@ -1,5 +1,7 @@
 var url = require('url');
 var pkg = {};
+
+
 var getParams = function (url) {
     if(url.indexOf('/') >= 0 && url.length > 0){
         var ars = url.split('/');
@@ -37,5 +39,51 @@ pkg.parseUrl = function (sourceUrl, urlToPrase) {
     var paramValues = getParams(url.parse(urlToPrase).pathname);
     return checkParams(paramNames, paramValues);
 };
+
+pkg.encodeData = function (dataToEncode) {
+    var isLoopAllow = true, data = [];
+    var props = {};
+    if(dataToEncode instanceof Array) {
+        props = Object.keys(dataToEncode[0]);
+        var index = 0;
+        while(isLoopAllow) {
+            if(!dataToEncode[index]){
+                isLoopAllow = false;
+            }else{
+                data[index] = [];
+                for (var k = 0; k < props.length; k++) {
+                    if (dataToEncode[index][props[k]] != null && dataToEncode[index][props[k]] != undefined) {
+                        data[index][k] = dataToEncode[index][props[k]];
+                    } else {
+                        data[index] = null;
+                    }
+                }
+
+            }
+            index++;
+        }
+    }
+    return {"Properties": props, "Data": data};
+};
+
+pkg.decodeData = function (encodedData) {
+    var data = [],isLoopAllow = true, index = 0;
+    if(encodedData.Properties && encodedData.Data){
+        while (isLoopAllow){
+            if(encodedData.Data[index] && encodedData.Data[index] instanceof Array){
+                data[index] = {};
+                for (var k = 0; k < encodedData.Properties.length; k++) {
+                    data[index][encodedData.Properties[k]] = encodedData.Data[index][k];
+                }
+            }else{
+                isLoopAllow = false;
+            }
+
+            index++;
+        }
+    }
+    return data;
+};
+
 
 module.exports = pkg;
