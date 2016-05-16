@@ -1,6 +1,10 @@
 # nk-node-util
 simple Library for nodejs apps.
 
+
+- [MVC Url params extractor](#MVC Url params extractor)
+- [Encoding and Decoding JSON data] (#Encoding and Decoding JSON data)
+
 ### Installation
 
 use --save or --save-dev along with following command will save to package.json
@@ -14,9 +18,6 @@ npm i nk-node-util
 ``` javscript
 var pkg = require('./index');
 ```
-
-- [MVC Url params extractor](#MVC Url params extractor)
-- [Encoding and Decoding JSON data] (#Encoding and Decoding JSON data)
 
 
 ### MVC Url params extractor
@@ -114,5 +115,8 @@ var encodedData = {
 var decodedData = pkg.decodeData(encodedData);
 //[{"Id":0,"Name":"Jason Bourne"},{"Id":1,"Name":"Tony Stark"},{"Id":2,"Name":"Winter Soldier"}]
 ```
+
+
+PS: For encoding/decoding use bower-component [nk-js-util](https://github.com/muralikrishnat/nk-js-util) for client side encoding/decoding
 
 

@@ -55,7 +55,7 @@ pkg.encodeData = function (dataToEncode) {
                     if (dataToEncode[index][props[k]] != null && dataToEncode[index][props[k]] != undefined) {
                         data[index][k] = dataToEncode[index][props[k]];
                     } else {
-                        data[index] = null;
+                        data[index][k] = null;
                     }
                 }
 
