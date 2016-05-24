@@ -16,7 +16,7 @@ npm i nk-node-util
 ### Starts (geting package reference)
 
 ``` javscript
-var pkg = require('./index');
+var pkg = require('./nk-node-util');
 ```
 
 
